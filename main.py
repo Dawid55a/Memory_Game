@@ -130,7 +130,7 @@ class Game(Screen):
         for loc in CARDS_LOCATION_CONST:
             if self.ids[loc].disabled == True:
                 found += 1
-            if found == 2:
+            if found == 16:
                 self.add_widget(Winn())
 
         print("Founded pairs: ", found)
