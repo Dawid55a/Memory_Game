@@ -3,7 +3,7 @@
 Memory_game jest to prosta gra w której musimy odkryć pary znaków.
 
 ## Technologie
-* [Kivy 11.1.1](https://kivy.org/#download)
+* [Kivy 1.11.1](https://kivy.org/#download)
 * [Python 3.7](https://www.python.org/) 
 
 # Działanie
