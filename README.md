@@ -41,8 +41,8 @@ Jest to problem z którym aktualnie się zmagam.
 
 # Do zrobienia
 - Skompilowanie w pełni działającego pliku .apk
-- Inicjalizacja gry przy uruchomieniu
-- Dodanie czasu ukończenia gry
+- ~~Inicjalizacja gry przy uruchomieniu~~
+- ~~Dodanie czasu ukończenia gry~~
 - ~~Usuwanie Widgetu `Winner!!!` przy tworzeniu nowej gry~~
 - Zmiana koloru kart
 - Możliwość wyboru rozmiaru pola gry
