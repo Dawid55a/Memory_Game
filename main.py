@@ -30,50 +30,52 @@ class MainInterface(ScreenManager):
 
     # method creating new schema for the game
     def create_cards(self):
+        if self.first_card_value == "" and self.second_card_value == "":
+            cards_dic = {}
+            cards_location = [x for x in CARDS_LOCATION_CONST]
 
-        cards_dic = {}
-        cards_location = [x for x in CARDS_LOCATION_CONST]
-
-        for i in range(len(CARDS_SYMBOL)):  # loop randomizing position
-            loc1 = choice(cards_location)
-            loc2 = choice(cards_location)
-            print("1 pętla:", loc1, loc2)
-            while loc1 == loc2:  # checking if position is the same
+            for i in range(len(CARDS_SYMBOL)):  # loop randomizing position
+                loc1 = choice(cards_location)
                 loc2 = choice(cards_location)
-                print("2 pętla:", loc1, loc2)
+                print("1 pętla:", loc1, loc2)
+                while loc1 == loc2:  # checking if position is the same
+                    loc2 = choice(cards_location)
+                    print("2 pętla:", loc1, loc2)
 
-            cards_dic[loc1] = CARDS_SYMBOL[i]  # assigning values to positions
-            cards_dic[loc2] = CARDS_SYMBOL[i]
+                cards_dic[loc1] = CARDS_SYMBOL[i]  # assigning values to positions
+                cards_dic[loc2] = CARDS_SYMBOL[i]
 
-            cards_location.remove(loc1)  # removing from temporary list
-            cards_location.remove(loc2)
+                cards_location.remove(loc1)  # removing from temporary list
+                cards_location.remove(loc2)
 
+                print(cards_location)
+            print(cards_dic)
+
+            for card in cards_dic.keys():  # reset cards
+                self.ids[card].disabled = False
+                self.ids[card].background_color = [1, 0.5, 0.3, 1]
+                print(card, "is set to --> ", cards_dic[card])  # debugging log
+
+            print("passed all")  # debugging log
             print(cards_location)
-        print(cards_dic)
+            print(CARDS_LOCATION_CONST)
 
-        for card in cards_dic.keys():  # reset cards
-            self.ids[card].disabled = False
-            self.ids[card].background_color = [1, 0.5, 0.3, 1]
-            print(card, "is set to --> ", cards_dic[card])  # debugging log
+            self.start = time.time()  # start of counting time
 
-        print("passed all")  # debugging log
-        print(cards_location)
-        print(CARDS_LOCATION_CONST)
+            self.cards_dictionary = cards_dic  # passing dictionary to class
+            self.first_card_key = ""  # reset card
+            self.first_card_value = ""
+            self.second_card_key = ""
+            self.second_card_value = ""
 
-        self.start = time.time()  # start of counting time
-
-        self.cards_dictionary = cards_dic  # passing dictionary to class
-        self.first_card_key = ""  # reset card
-        self.first_card_value = ""
-        self.second_card_key = ""
-        self.second_card_value = ""
-
-        # deleting the winner widget
-        try:
-            main_interface.ids.Game.remove_widget(winn)
-            print(main_interface.ids.Game)
-        except:
-            print(sys.exc_info())
+            # deleting the winner widget
+            try:
+                main_interface.ids.Game.remove_widget(winn)
+                print(main_interface.ids.Game)
+            except:
+                print(sys.exc_info())
+        else:
+            pass
 
     # showing card symbol and initializing check method
     def show_card(self, card):
