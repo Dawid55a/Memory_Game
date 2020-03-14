@@ -6,145 +6,158 @@
     size_hint: None, None
 #    size: (70,70)
 
-<Game>:
-    canvas.before:
-        Color:
-            rgba: 0.5, 0.5, 0.5, 1
-        Rectangle:
-            size: root.size
-            pos: root.pos
-    BoxLayout:
-        pos: (0, root.height -100)
-        orientation: "horizontal"
-        Button:
-            size_hint: 0.5, None
-            background_color: 1,0.5,0.5,1
-            text: "CREATE GAME"
-            on_press:
-                root.create_cards()
-        Button:
-            size_hint: 0.5, None
-            background_color: 1,0.5,0.5,1
-            text: "SETTINGS"
-            on_press:
-                root.manager.current = "Settings"
-                root.manager.transition.direction = "up"
+<MainInterface>:
+    id: main_interface
+    Screen:
+        name: "Game"
+        id: Game
 
-    RelativeLayout:
-#        size: min(root.size), min(root.size)
-        size_hint: None, None
-        size: (400, 400)
-        pos_hint: {'center_x': .5, 'center_y': .4}
+        canvas.before:
+            Color:
+                rgba: 0.5, 0.5, 0.5, 1
+            Rectangle:
+                size: root.size
+                pos: root.pos
+        BoxLayout:
+            id: options_bar
+            pos: (0, root.height -100)
+            orientation: "horizontal"
+            Button:
+                size_hint: 0.5, None
+                background_color: 1,0.5,0.5,1
+                text: "CREATE GAME"
+                on_press:
+                    root.create_cards()
+            Button:
+                size_hint: 0.5, None
+                background_color: 1,0.5,0.5,1
+                text: "SETTINGS"
+                on_press:
+                    root.current = "SettingsScreen"
+                    root.transition.direction = "up"
+            Button:
+                size_hint: 0.5, None
+                background_color: 1,0.5,0.5,1
+                text: "EXIT"
+                on_release:
+                    app.stop()
+
+        RelativeLayout:
+            id: game_work_space
+            size_hint: None, None
+            size: (400, 400)
+            pos_hint: {'center_x': .5, 'center_y': .4}
 
 
-        GridLayout:
-#            canvas.before:
-#                Color:
-#                    rgba: 0.0, 0.9, 0.5, 1
-#                Rectangle:
-#                    size: self.size
-#                    pos: self.pos
-            size_hint: 1 , 1
-            rows: 4
-            cols: 4
+            GridLayout:
+                id: cards_field
+                size_hint: 1 , 1
+                rows: 4
+                cols: 4
 
-            Card:
-                id: t1
-                on_release:
-                    root.show_card("t1")
-            Card:
-                id: t2
-                on_release:
-                    root.show_card("t2")
-            Card:
-                id: t3
-                on_release:
-                    root.show_card("t3")
-            Card:
-                id: t4
-                on_release:
-                    root.show_card("t4")
-            Card:
-                id: m1
-                on_release:
-                    root.show_card("m1")
-            Card:
-                id: m2
-                on_release:
-                    root.show_card("m2")
-            Card:
-                id: m3
-                on_release:
-                    root.show_card("m3")
-            Card:
-                id: m4
-                on_release:
-                    root.show_card("m4")
-            Card:
-                id: lm1
-                on_release:
-                    root.show_card("lm1")
-            Card:
-                id: lm2
-                on_release:
-                    root.show_card("lm2")
-            Card:
-                id: lm3
-                on_release:
-                    root.show_card("lm3")
-            Card:
-                id: lm4
-                on_release:
-                    root.show_card("lm4")
-            Card:
-                id: b1
-                on_release:
-                    root.show_card("b1")
-            Card:
-                id: b2
-                on_release:
-                    root.show_card("b2")
-            Card:
-                id: b3
-                on_release:
-                    root.show_card("b3")
-            Card:
-                id: b4
-                on_release:
-                    root.show_card("b4")
+                # defined cards
+                Card:
+                    id: t1
+                    on_release:
+                        root.show_card("t1")
+                Card:
+                    id: t2
+                    on_release:
+                        root.show_card("t2")
+                Card:
+                    id: t3
+                    on_release:
+                        root.show_card("t3")
+                Card:
+                    id: t4
+                    on_release:
+                        root.show_card("t4")
+                Card:
+                    id: m1
+                    on_release:
+                        root.show_card("m1")
+                Card:
+                    id: m2
+                    on_release:
+                        root.show_card("m2")
+                Card:
+                    id: m3
+                    on_release:
+                        root.show_card("m3")
+                Card:
+                    id: m4
+                    on_release:
+                        root.show_card("m4")
+                Card:
+                    id: lm1
+                    on_release:
+                        root.show_card("lm1")
+                Card:
+                    id: lm2
+                    on_release:
+                        root.show_card("lm2")
+                Card:
+                    id: lm3
+                    on_release:
+                        root.show_card("lm3")
+                Card:
+                    id: lm4
+                    on_release:
+                        root.show_card("lm4")
+                Card:
+                    id: b1
+                    on_release:
+                        root.show_card("b1")
+                Card:
+                    id: b2
+                    on_release:
+                        root.show_card("b2")
+                Card:
+                    id: b3
+                    on_release:
+                        root.show_card("b3")
+                Card:
+                    id: b4
+                    on_release:
+                        root.show_card("b4")
 
-<SettingsScreen>:
-    size_hint: 1, 1
-    canvas.before:
-        Color:
-            rgba: 0.5, 0.5, 0.5, 1
-        Rectangle:
-            size: root.size
-            pos: root.pos
-    BoxLayout:
+    Screen:
+        name: "SettingsScreen"
+        id: SettingsScreen
 
-        pos: (0, 0)
-        orientation: "vertical"
-        Button:
-            size_hint: 1, 0.1
-            background_color: 1,0.5,0.5,1
-            text: "BACK"
-            on_press:
-                root.manager.transition.direction = "down"
-                root.manager.current = "Game"
-        Button:
-            size_hint: 1, 0.1
-            background_color: 1,0.5,0.5,1
-            text: "SET COLOR"
-            on_release:
-                root.set_color(colorpicker)
-        ColorPicker:
-            id: colorpicker
-            size_hint: 1, 0.9
+        size_hint: 1, 1
+        canvas.before:
+            Color:
+                rgba: 0.5, 0.5, 0.5, 1
+            Rectangle:
+                size: root.size
+                pos: root.pos
+        BoxLayout:
+
+            pos: (0, 0)
+            orientation: "vertical"
+            Button:
+                size_hint: 1, 0.1
+                background_color: 1,0.5,0.5,1
+                text: "BACK"
+                on_press:
+                    root.transition.direction = "down"
+                    root.current = "Game"
+            Button:
+                size_hint: 1, 0.1
+                background_color: 1,0.5,0.5,1
+                text: "SET COLOR"
+                on_release:
+                    root.set_color(colorpicker)
+            ColorPicker:
+                id: colorpicker
+                size_hint: 1, 0.9
 
 <Winn>:
-    id: winn
     Label:
-        text:"WINNER !!!"
-        font_size: 80
+        id: winn
+        font_size: 100
         center: app.root.center
+        text: "WINNER!"
+        color:.8, .8, .8, 1
+

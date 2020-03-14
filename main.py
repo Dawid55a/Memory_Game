@@ -1,13 +1,16 @@
 from kivy.app import App
+from kivy.uix.label import Label
 from kivy.uix.screenmanager import *
 from kivy.core.window import Window
 from kivy.clock import Clock
 
 from random import *
+import sys
 
 from kivy.uix.widget import Widget
 
 Window.size = (480, 753)
+Window.top = True
 
 CARDS_LOCATION_CONST = ["t1", "t2", "t3", "t4",
                         "m1", "m2", "m3", "m4",
@@ -15,8 +18,10 @@ CARDS_LOCATION_CONST = ["t1", "t2", "t3", "t4",
                         "b1", "b2", "b3", "b4"]
 CARDS_SYMBOL = ["@", "!", "#", "$", "%", "^", "&", "*"]
 
+main_interface = None
 
-class Game(Screen):
+
+class MainInterface(ScreenManager):
     cards_dictionary = {}
     first_card_key = ""
     first_card_value = ""
@@ -24,7 +29,8 @@ class Game(Screen):
     second_card_value = ""
     points = 0
 
-    def create_cards(self):  # method creating new schema for the game
+    # method creating new schema for the game
+    def create_cards(self):
 
         cards_dic = {}
         cards_location = [x for x in CARDS_LOCATION_CONST]
@@ -61,7 +67,15 @@ class Game(Screen):
         self.second_card_key = ""
         self.second_card_value = ""
 
-    def show_card(self, card):  # showing card symbol
+        # deleting the winner widget
+        try:
+            main_interface.ids.Game.remove_widget(winn)
+            print(main_interface.ids.Game)
+        except:
+            print(sys.exc_info())
+
+    # showing card symbol and initializing check method
+    def show_card(self, card):
         if self.first_card_value == "":  # if first card is not chosen
 
             self.first_card_value = self.cards_dictionary[card]
@@ -83,10 +97,9 @@ class Game(Screen):
 
             print("Second card is chosen: ", card)
 
-            print(card)
+            Clock.schedule_once(lambda dt: MainInterface.check(self, card), 1)
 
-            Clock.schedule_once(lambda dt: Game.check(self, card), 1)
-
+    # checking conditions on chosen cards
     def check(self, card):
         print(card)
         if self.first_card_value == self.cards_dictionary[card]:  # if second card is the same
@@ -106,7 +119,7 @@ class Game(Screen):
 
             print("Good ")
 
-            Clock.schedule_once(lambda dt: Game.winn(self), 0.5)
+            Clock.schedule_once(lambda dt: MainInterface.winn(self), 0.5)
 
         elif self.first_card_value != card:  # if second card is different
 
@@ -125,30 +138,24 @@ class Game(Screen):
 
             print("Wrong ")
 
+    # executing winning sequence
     def winn(self):
         found = 0
         for loc in CARDS_LOCATION_CONST:
             if self.ids[loc].disabled == True:
                 found += 1
-            if found == 16:
-                self.add_widget(Winn())
+        if found == 16:
+            global winn
+            winn = Label(
+                text="Winn!!!",
+                font_size=80
+            )
+            main_interface.ids.Game.add_widget(winn)
+            print(main_interface.ids)
 
         print("Founded pairs: ", found)
 
-
-class Winn(Widget):
-    pass
-
-
-# code for different sizes (too lazy aaaand don't work ¯\_(ツ)_/¯)
-#    def get_id(self, card):
-#        for id, widget in card.parent.ids.items():
-#            if widget.__self__ == card:
-#                return id
-root = None
-
-
-class SettingsScreen(Screen):
+    # setting color of cards
     def set_color(self, colorpicker):
         print("Chosen color: ", colorpicker.color)
         # print(Game.ids["main"].background_color)
@@ -156,53 +163,15 @@ class SettingsScreen(Screen):
         # Game.ids["t1"].background_color = self.ids["colorpicker"].color
         # print(root.ids["t1"])
 
+class Winn(Widget):
     pass
-
 
 class GameApp(App):
 
     def build(self):
-        sm = ScreenManager(transition=SlideTransition())
-        sm.add_widget(Game(name="Game"))
-        sm.add_widget(SettingsScreen(name="Settings"))
-        return sm
-
-    # trying to init building the game
-    # def on_start(self):
-    #     cards_dic = {}
-    #     cards_location = [x for x in CARDS_LOCATION_CONST]
-    #
-    #     for i in range(len(CARDS_SYMBOL)):  # loop randomizing position
-    #         loc1 = choice(cards_location)
-    #         loc2 = choice(cards_location)
-    #         print("1 pętla:", loc1, loc2)
-    #         while loc1 == loc2:  # checking if position is the same
-    #             loc2 = choice(cards_location)
-    #             print("2 pętla:", loc1, loc2)
-    #
-    #         cards_dic[loc1] = CARDS_SYMBOL[i]  # assigning values to positions
-    #         cards_dic[loc2] = CARDS_SYMBOL[i]
-    #
-    #         cards_location.remove(loc1)  # removing from temporary list
-    #         cards_location.remove(loc2)
-    #
-    #         print(cards_location)
-    #     print(cards_dic)
-    #
-    #     # for card in cards_dic.keys():  # reset cards
-    #     #     Game.ids[card].disabled = False
-    #     #     Game.ids[card].background_color = [1, 0.5, 0.3, 1]
-    #     #     print(card, "is set to --> ", cards_dic[card])  # debugging log
-    #
-    #     print("passed all")  # debugging log
-    #     print(cards_location)
-    #     print(CARDS_LOCATION_CONST)
-    #
-    #     Game.cards_dictionary = cards_dic  # passing dictionary to class
-    #     Game.first_card_key = ""  # reset card
-    #     Game.first_card_value = ""
-    #     Game.second_card_key = ""
-    #     Game.second_card_value = ""
+        global main_interface
+        main_interface = MainInterface(transition=SlideTransition())
+        return main_interface
 
 
 if __name__ == "__main__":
