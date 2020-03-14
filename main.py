@@ -170,7 +170,7 @@ class GameApp(App):
 
     def build(self):
         global main_interface
-        main_interface = MainInterface(transition=SlideTransition())
+        main_interface = MainInterface(transition=CardTransition())
         return main_interface
 
 
