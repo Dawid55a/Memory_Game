@@ -6,6 +6,17 @@ Memory_game jest to prosta gra w której musimy odkryć pary znaków.
 * [Kivy 11.1.1](https://kivy.org/#download)
 * [Python 3.7](https://www.python.org/) 
 
+# Instalacja
+```
+git clone https://github.com/Dawid55a/Memory_Game.git
+cd Memory_Game
+pip install -r requirements.txt
+```
+Aby uruchomić aplikację należy wpisać
+```
+python main.py
+```
+
 # Działanie
  ![Main_Screen_Small](https://user-images.githubusercontent.com/21986555/76655833-862b1600-656e-11ea-87ca-961b07c42283.png) 
 
