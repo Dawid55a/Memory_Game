@@ -1,8 +1,6 @@
 <Card@Button>:
-    id: main
     text: ""
-    font_size: 30
-    background_color: 1, 0.5, 0.3, 1
+    font_size: 50
     size_hint: None, None
 
 <MainInterface>:
@@ -13,7 +11,7 @@
 
         canvas.before:
             Color:
-                rgba: 0.5, 0.5, 0.5, 1
+                rgba: 203/255, 208/255, 214/255, 1
             Rectangle:
                 size: root.size
                 pos: root.pos
@@ -23,20 +21,41 @@
             orientation: "horizontal"
             Button:
                 size_hint: 0.5, None
-                background_color: 1,0.5,0.5,1
+                canvas.before:
+                    Color:
+                        rgba: 5/255, 102/255, 141/255, 0.5
+                    Line:
+                        width: 2
+                        rectangle: self.x, self.y, self.width, self.height
+                background_color: 66/255, 122/255, 161/255, 1
+                color: 203/255, 208/255, 214/255, 1
                 text: "CREATE GAME"
                 on_press:
                     root.create_cards()
             Button:
                 size_hint: 0.5, None
-                background_color: 1,0.5,0.5,1
+                canvas.before:
+                    Color:
+                        rgba: 5/255, 102/255, 141/255, 0.5
+                    Line:
+                        width: 2
+                        rectangle: self.x, self.y, self.width, self.height
+                background_color: 66/255, 122/255, 161/255, 1
+                color: 203/255, 208/255, 214/255, 1
                 text: "SETTINGS"
                 on_press:
                     root.current = "SettingsScreen"
                     root.transition.direction = "up"
             Button:
                 size_hint: 0.5, None
-                background_color: 1,0.5,0.5,1
+                canvas.before:
+                    Color:
+                        rgba: 5/255, 102/255, 141/255, 0.5
+                    Line:
+                        width: 2
+                        rectangle: self.x, self.y, self.width, self.height
+                background_color: 66/255, 122/255, 161/255, 1
+                color: 203/255, 208/255, 214/255, 1
                 text: "EXIT"
                 on_release:
                     app.stop()
@@ -127,7 +146,7 @@
         size_hint: 1, 1
         canvas.before:
             Color:
-                rgba: 0.5, 0.5, 0.5, 1
+                rgba: 203/255, 208/255, 214/255, 1
             Rectangle:
                 size: root.size
                 pos: root.pos
@@ -137,14 +156,28 @@
             orientation: "vertical"
             Button:
                 size_hint: 1, 0.1
-                background_color: 1,0.5,0.5,1
+                canvas.before:
+                    Color:
+                        rgba: 5/255, 102/255, 141/255, 0.5
+                    Line:
+                        width: 2
+                        rectangle: self.x, self.y, self.width, self.height
+                background_color:66/255, 122/255, 161/255, 1
+                color: 203/255, 208/255, 214/255, 1
                 text: "BACK"
                 on_press:
                     root.transition.direction = "down"
                     root.current = "Game"
             Button:
                 size_hint: 1, 0.1
-                background_color: 1,0.5,0.5,1
+                canvas.before:
+                    Color:
+                        rgba: 5/255, 102/255, 141/255, 0.5
+                    Line:
+                        width: 2
+                        rectangle: self.x, self.y, self.width, self.height
+                background_color: 66/255, 122/255, 161/255, 1
+                color: 203/255, 208/255, 214/255, 1
                 text: "SET COLOR"
                 on_release:
                     root.set_color(colorpicker)

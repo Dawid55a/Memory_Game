@@ -14,7 +14,7 @@ CARDS_LOCATION_CONST = ["t1", "t2", "t3", "t4",
                         "m1", "m2", "m3", "m4",
                         "lm1", "lm2", "lm3", "lm4",
                         "b1", "b2", "b3", "b4"]
-CARDS_SYMBOL = ["@", "!", "#", "$", "%", "^", "&", "*"]
+CARDS_SYMBOL = ["@", "!", "#", "$", "%", "|", "&", "?"]
 
 main_interface = None
 
@@ -27,6 +27,9 @@ class MainInterface(ScreenManager):
     second_card_value = ""
     start = None
     end = None
+
+    # color of the cards
+    card_color = [131/255, 191/255, 67/255, 1]
 
     # method creating new schema for the game
     def create_cards(self):
@@ -53,7 +56,7 @@ class MainInterface(ScreenManager):
 
             for card in cards_dic.keys():  # reset cards
                 self.ids[card].disabled = False
-                self.ids[card].background_color = [1, 0.5, 0.3, 1]
+                self.ids[card].background_color = self.card_color
                 print(card, "is set to --> ", cards_dic[card])  # debugging log
 
             print("passed all")  # debugging log
@@ -127,11 +130,11 @@ class MainInterface(ScreenManager):
 
             self.ids[self.first_card_key].text = ""
             self.ids[self.first_card_key].disabled = False
-            self.ids[self.first_card_key].background_color = [1, 0.5, 0.3, 1]
+            self.ids[self.first_card_key].background_color = self.card_color
 
             self.ids[card].text = ""
             self.ids[card].disabled = False
-            self.ids[card].background_color = [1, 0.5, 0.3, 1]
+            self.ids[card].background_color = self.card_color
 
             self.first_card_value = ""
             self.first_card_key = ""
