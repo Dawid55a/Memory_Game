@@ -40,6 +40,8 @@ Sprawił mi wiele problemów, jednak udało mi się przy jego pomocy kompilować
 Niestety i tu natrafiłem na problem, bo po instalacji aplikacji widzimy tylko czarny ekran. 
 Jest to problem z którym aktualnie się zmagam.
 
+I ten problem udało mi się rozwiązać. Hip Hip Huray!!. Pozostaje poprawnie i responsywnie poukładać elemnty ekranu.
+
 # Do zrobienia
 - ~~Skompilowanie w pełni działającego pliku .apk~~
 - ~~Inicjalizacja gry przy uruchomieniu~~
