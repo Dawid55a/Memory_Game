@@ -3,7 +3,7 @@
 Memory_game jest to prosta gra w której musimy odkryć pary znaków.
 
 ## Technologie
-* [Kivy 11.1.1](https://kivy.org/#download)
+* [Kivy 1.11.1](https://kivy.org/#download)
 * [Python 3.7](https://www.python.org/) 
 
 # Instalacja
@@ -40,7 +40,7 @@ Niestety i tu natrafiłem na problem, bo po instalacji aplikacji widzimy tylko c
 Jest to problem z którym aktualnie się zmagam.
 
 # Do zrobienia
-- Skompilowanie w pełni działającego pliku .apk
+- ~~Skompilowanie w pełni działającego pliku .apk~~
 - ~~Inicjalizacja gry przy uruchomieniu~~
 - ~~Dodanie czasu ukończenia gry~~
 - ~~Usuwanie Widgetu `Winner!!!` przy tworzeniu nowej gry~~
