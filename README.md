@@ -1,4 +1,4 @@
-# Memomry_Game
+# Memory_Game
 [Link do aplikacji](https://files.catbox.moe/8d6pk1.apk)
 
 Memory_game jest to prosta gra w której musimy odkryć pary znaków.
