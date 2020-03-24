@@ -26,9 +26,11 @@ Na ekranie gry klikamy w pola które pokazują nam ukryty znak. Po wybraniu dwó
 - Wybrane pola są takie same: Pola się wyszarzają
 
 ![Winner_Screen](https://user-images.githubusercontent.com/21986555/76657089-516c8e00-6571-11ea-8a82-f282ed5a9ccf.png)
+
 Po eliminacji wszystkich pól pojawia się napis `Winner!!!`
 
 ![Settings_Screen_Small](https://user-images.githubusercontent.com/21986555/76655829-85927f80-656e-11ea-9d7b-66ee34dac68a.png)
+
 Na ekranie ustawień mamy Widget służący wyborowi koloru kart (aktualnie wypisujący tylko w logach wybrany kolor)
 
 # Dlaczego Kivy i Python?
